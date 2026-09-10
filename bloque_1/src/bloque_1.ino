@@ -41,22 +41,35 @@ void setup() {
 
         // TODO 1.4: Tocar la puerta del periférico:
         // 1. Iniciar transmisión con Wire.beginTransmission(address);
+        
         // 2. Finalizar transmisión capturando el byte de error: byte error = Wire.endTransmission();
+
         /* ESCRIBE TU CÓDIGO AQUÍ */
         Wire.beginTransmission(address);
         byte error = Wire.endTransmission();
+        
 
         // TODO 1.5: Evaluar la respuesta del periférico:
         // Pregunta Guía: ¿Qué valor devuelve Wire.endTransmission() cuando el periférico responde con ACK (Presente)?
-         if (error == 0) {
-             Serial.printf("[I2C] Dispositivo detectado en: 0x%02X ", address);
-             if (address == OLED_I2C_ADDR) {
-                 Serial.println("➔ [Display OLED SSD1306] [OK]");
-             } else {
-                 Serial.println("➔ [Periférico Desconocido]");
-             }
-             devicesFound++;
-         }
+        // if (error == 0) {
+        //     Serial.printf("[I2C] Dispositivo detectado en: 0x%02X ", address);
+        //     if (address == OLED_I2C_ADDR) {
+        //         Serial.println("➔ [Display OLED SSD1306] [OK]");
+        //     } else {
+        //         Serial.println("➔ [Periférico Desconocido]");
+        //     }
+        //     devicesFound++;
+        // }
+        if (error == 0) {
+          Serial.printf("[I2C] Dispositivo detectado en: 0x%02X", address);
+          if (address == OLED_I2C_ADDR) {
+            Serial.println("➔ [Display OLED SSD1306] [OK]");
+          } else {
+            Serial.println("➔ [Periférico Desconocido]");
+          }
+          devicesFound++;
+        }
+
     }
 
     if (devicesFound == 0) {
